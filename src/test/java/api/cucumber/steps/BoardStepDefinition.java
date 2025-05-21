@@ -65,39 +65,49 @@ public class BoardStepDefinition extends BaseTest {
         response = getBoardService().deleteABoardFromService(boardId);
     }
 
+    @When("I send an invitation to email")
+    public void i_send_an_invitation_to_email() {
+        response = getBoardService().inviteMemberToBoardViaEmail(boardId);
+    }
+
     @Then("A board is created")
     public void a_board_is_created() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("I got resource boards")
     public void i_got_resource_boards() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("I got the resources by lists")
     public void i_got_the_resources_by_lists() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("I got the resources by members")
     public void i_got_the_resources_by_members() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("I got the resources by cards")
     public void i_got_the_resources_by_cards() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
     }
 
     @Then("The board is removed")
     public void the_board_is_removed() {
-        Assert.assertEquals(response.getStatusCode(), 200);
+        checkStatusCode();
+    }
+
+    @Then("Invitation sent by email")
+    public void invitation_sent_by_email() {
+        checkStatusCode();
     }
 
     @And("Three lists presented on the board")
@@ -111,5 +121,9 @@ public class BoardStepDefinition extends BaseTest {
     @And("A board has {string} access")
     public void a_board_has_public_access(String valueOption) {
         Assert.assertEquals(response.body().jsonPath().getString("prefs.permissionLevel"), valueOption);
+    }
+
+    private void checkStatusCode() {
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 }
