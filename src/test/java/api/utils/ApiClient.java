@@ -21,31 +21,31 @@ public class ApiClient {
     }
 
     public Response get(String path, RequestSpecification requestSpecification) {
-        logger.info("Executing GET request to: " + path);
+//        logger.info("Executing GET request to: " + path);
 
         return requestSpecification.get(path);
     }
 
     public Response post(String path, RequestSpecification requestSpecification) {
-        logger.info("Executing POST request to: " + path);
+//        logger.info("Executing POST request to: " + path);
 
         return requestSpecification.post(path);
     }
 
     public Response put(String path, RequestSpecification requestSpecification) {
-        logger.info("Executing PUT request to: " + path);
+//        logger.info("Executing PUT request to: " + path);
 
         return requestSpecification.put(path);
     }
 
     public Response patch(String path, RequestSpecification requestSpecification) {
-        logger.info("Executing PUT request to: " + path);
+//        logger.info("Executing PUT request to: " + path);
 
         return requestSpecification.patch(path);
     }
 
     public Response delete(String path, RequestSpecification requestSpecification) {
-        logger.info("Executing DELETE request to: " + path);
+//        logger.info("Executing DELETE request to: " + path);
 
         return requestSpecification.delete(path);
     }
