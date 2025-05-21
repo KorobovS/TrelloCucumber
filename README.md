@@ -1,4 +1,6 @@
-## Trello Boards API Integration with Java and RestAssured
-### This project demonstrates how to interact with the Trello REST API, specifically the Boards API group, using Java and RestAssured. It provides examples of creating, retrieving, updating, and deleting boards programmatically.
-
-## The test plan can be viewed [here](https://docs.google.com/document/d/1hbi66GpGcNl0v8r-pG9iE-qd9yd0txGcnzLRy_-xjT4/edit?usp=sharing)
+## [трелло API](https://developer.atlassian.com/cloud/trello/rest/api-group-boards/#api-boards-id-field-get)
+## [Cucumber docs](https://cucumber.io/docs/guides/10-minute-tutorial/)
+## [Репозиторий с проектом](https://github.com/KorobovS/TrelloCucumber.git)
+## [Доска с тесткейсами/US](https://github.com/users/RomanBurlaka78/projects/7/views/2)
+## [Матрица](https://docs.google.com/spreadsheets/d/1DUbiyQ5LOpycLbh3UpXPpV653Kjts6JMXgRDnro3ZDI/edit?gid=0#gid=0)
+## [Miro](https://miro.com/app/board/uXjVILFQVmo=/)
