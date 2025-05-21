@@ -6,4 +6,15 @@
             <class name="api.cucumber.runners.CucumberRunnerTest"/>
         </classes>
     </test>
+<!--    <test name="Test API with xml">-->
+<!--        <classes>-->
+<!--            <class name="api.tests.ActionsAPITest"/>-->
+<!--            <class name="api.tests.BoardApiTest"/>-->
+<!--            <class name="api.tests.CardsApiTest"/>-->
+<!--            <class name="api.tests.ChecklistsAPITest"/>-->
+<!--            <class name="api.tests.LabelsApiTest"/>-->
+<!--            <class name="api.tests.ListsApiTest"/>-->
+<!--            <class name="api.tests.MembersAPITest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
