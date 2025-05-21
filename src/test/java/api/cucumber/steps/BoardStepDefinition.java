@@ -60,6 +60,11 @@ public class BoardStepDefinition extends BaseTest {
         response = getBoardService().getLabelsOnBoard(boardId);
     }
 
+    @When("I delete a board")
+    public void i_delete_a_board() {
+        response = getBoardService().deleteABoardFromService(boardId);
+    }
+
     @Then("A board is created")
     public void a_board_is_created() {
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -88,6 +93,11 @@ public class BoardStepDefinition extends BaseTest {
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
         Assert.assertEquals(response.getStatusCode(),200);
+    }
+
+    @Then("The board is removed")
+    public void the_board_is_removed() {
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @And("Three lists presented on the board")
