@@ -3,15 +3,13 @@ Feature: Cucumber test Labels
   @blocker @positive @RU
   Scenario: Тест на русском
     When Я создаю доску "ДОСКА"
-    Then Я получаю код ответа "200"
-    And Я удаляю доску
+    Then Я получаю код ответа 200
 
   @blocker
   Scenario Outline: Create a Label with valid values
     When I create a new board with name "Board Name"
     When I create a new Label on a Board with "<name>" and "<color>"
-    Then The response status code should be "<code>"
-    When I delete the created board
+    Then The response status code should be <code>
 
     @positive
     Examples:
@@ -38,13 +36,11 @@ Scenario: Get Label
   When I create a new board with name "Board get label"
   When I create a new Label on a Board with "Label" and "red"
   When I get label
-  Then The response status code should be "200"
-  When I delete the created board
+  Then The response status code should be 200
 
   Scenario: Update Label
     When I create a new board with name "Board update label"
     When I create a new Label on a Board with "Label" and "blue"
     And I update label name "Name" and color "green"
-    Then The response status code should be "200"
+    Then The response status code should be 200
     And Check name "Name"
-    When I delete the created board

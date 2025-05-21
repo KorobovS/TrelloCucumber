@@ -18,9 +18,9 @@ public class CucumberStepsLabels extends BaseTest {
         boardId = response.jsonPath().getString("id");
     }
 
-    @Then("Я получаю код ответа {string}")
-    public void checkCode(String code) {
-        Assert.assertEquals(response.getStatusCode(), Integer.parseInt(code));
+    @Then("Я получаю код ответа {int}")
+    public void checkCode(int code) {
+        Assert.assertEquals(response.getStatusCode(), code);
     }
 
     @And("Я удаляю доску")
@@ -34,9 +34,9 @@ public class CucumberStepsLabels extends BaseTest {
         labelId = response.body().jsonPath().get("id");
     }
 
-    @Then("The response status code should be {string}")
-    public void checkStatusCode(String statusCode) {
-        Assert.assertEquals(response.getStatusCode(), Integer.parseInt(statusCode));
+    @Then("The response status code should be {int}")
+    public void checkStatusCode(int statusCode) {
+        Assert.assertEquals(response.getStatusCode(), statusCode);
     }
 
     @When("I get label")

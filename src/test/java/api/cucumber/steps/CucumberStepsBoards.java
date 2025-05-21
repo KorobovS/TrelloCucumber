@@ -123,9 +123,9 @@ public class CucumberStepsBoards extends BaseTest {
         response = getBoardService().deleteABoardFromService(boardId);
     }
 
-    @Then("The response actions in count {string}")
-    public void checkActions(String count) {
-        Assert.assertEquals(response.jsonPath().getList("id").size(), Integer.parseInt(count));
+    @Then("The response actions in count {int}")
+    public void checkActions(int count) {
+        Assert.assertEquals(response.jsonPath().getList("id").size(), count);
     }
 
     @And("The response should contain a valid board id")
