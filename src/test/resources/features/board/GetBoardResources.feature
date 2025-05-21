@@ -14,20 +14,30 @@ Feature: Get a board with resources
       When I get resources on a board
       Then I got resource boards
 
+      And I delete a board
+
   Rule: Get a specific resource of the board
 
     Scenario: I get lists on a board
       When I get lists on a board
       Then I got the resources by lists
 
+      And I delete a board
+
     Scenario: I get members on a board
       When I get members on a board
       Then I got the resources by members
+
+      And I delete a board
 
     Scenario: I get cards on a board
       When I get cards on a board
       Then I got the resources by cards
 
+      And I delete a board
+
     Scenario: I get labels on a board
       When I get labels on a board
       Then I got the resources by labels
+
+      And I delete a board

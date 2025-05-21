@@ -87,12 +87,12 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("I got the resources by cards")
     public void i_got_the_resources_by_cards() {
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Then("The board is removed")
