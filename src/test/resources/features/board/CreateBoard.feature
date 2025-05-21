@@ -14,16 +14,12 @@ Feature: Create a board
       Then A board is created
       And Three lists presented on the board
 
-      And I delete a board
-
   Rule: Create a board with specific options
 
     Scenario: Create a board with public access
       When I create a board with "public" access
       Then A board is created
       And A board has "public" access
-
-      And I delete a board
 
 #    Scenario: Create a board without default lists
 #      When I create a board without default lists

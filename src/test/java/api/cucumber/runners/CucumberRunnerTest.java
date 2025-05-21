@@ -1,7 +1,11 @@
 package api.cucumber.runners;
 
+import api.controllers.BoardService;
+import io.cucumber.java.After;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+
+import static api.base.TestData.BoardTestData.boardId;
 
 @CucumberOptions(
         features = "src/test/resources/features",
@@ -14,4 +18,10 @@ import io.cucumber.testng.CucumberOptions;
 )
 
 public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
+
+    @After
+    public void deleteBoard() {
+        BoardService boardService = new BoardService();
+        boardService.deleteBoard(boardId);
+    }
 }
