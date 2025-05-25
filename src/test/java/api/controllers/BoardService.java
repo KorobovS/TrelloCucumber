@@ -26,7 +26,7 @@ public class BoardService extends BaseService {
     @Step("Create board with name: {nameOfTheBoard} and custom options")
     public Response createCustomBoard(String nameOfTheBoard, String option, String valueOption) {
 
-        requestSpecification.queryParam("name", nameOfTheBoard).queryParam(option, Boolean.valueOf(valueOption));
+        requestSpecification.queryParam("name", nameOfTheBoard).queryParam(option, valueOption);
         Response response = apiClient.post(BoardEndPoints.BOARDS_BASE_PATH, requestSpecification);
 
         initRequestSpecification();

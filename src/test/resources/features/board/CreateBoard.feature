@@ -31,26 +31,29 @@ Feature: Create a board
 
       @positive
       Examples:
-        | option        | value | code |
-        | defaultLists | false | 200  |
-#        | desc                  | test description         |200  |
-#        | idOrganization        | 67fe38e616fde7deef16ed49 |200  |
-#        | prefs_permissionLevel | org                      |200  |
-#        | prefs_permissionLevel | public                   |200  |
-#        | prefs_voting          | members                  |200  |
-#        | prefs_voting          | observers                |200  |
-#        | prefs_comments        | members                  |200  |
-#        | prefs_comments        | observers                |200  |
-#        | prefs_invitations     | admins                   |200  |
-#        | prefs_background      | orange                   |200  |
-#        | prefs_background      | green                    |200  |
-#        | prefs_background      | red                      |200  |
-#        | prefs_background      | purple                   |200  |
-#        | prefs_background      | pink                     |200  |
-#        | prefs_background      | lime                     |200  |
-#        | prefs_background      | sky                      |200  |
-#        | prefs_background      | grey                     |200  |
-#        | prefs_cardAging       | pirate                   |200  |
+        | option                | value                    | code |
+        | defaultLists          | false                    | 200  |
+        | defaultLabels         | false                    | 200  |
+        | desc                  | test description         | 200  |
+        | idOrganization        | 67fe38e616fde7deef16ed49 | 200  |
+        | prefs_permissionLevel | org                      | 200  |
+        | prefs_permissionLevel | public                   | 200  |
+        | prefs_voting          | members                  | 200  |
+        | prefs_voting          | observers                | 200  |
+        | prefs_comments        | members                  | 200  |
+        | prefs_comments        | observers                | 200  |
+        | prefs_invitations     | admins                   | 200  |
+        | prefs_selfJoin        | false                    | 200  |
+        | prefs_cardCovers      | false                    | 200  |
+        | prefs_background      | orange                   | 200  |
+        | prefs_background      | green                    | 200  |
+        | prefs_background      | red                      | 200  |
+        | prefs_background      | purple                   | 200  |
+        | prefs_background      | pink                     | 200  |
+        | prefs_background      | lime                     | 200  |
+        | prefs_background      | sky                      | 200  |
+        | prefs_background      | grey                     | 200  |
+        | prefs_cardAging       | pirate                   | 200  |
 
 #    Scenario: Create a board without default lists
 #      When I create a board without default lists

@@ -129,7 +129,14 @@ public class BoardStepDefinition extends BaseTest {
 
     @And("The board has an custom {string} with a given {string}")
     public void i_board_has_an_custom_option_with_a_given_value(String option, String value) {
-        Assert.assertEquals(response.body().jsonPath().getString(option.replace('_', '.')), value);
+
+        if (option.equals("defaultLists")) {
+            Assert.assertEquals(getBoardService().getListsOfABoard(boardId).jsonPath().getList(rootPath).size(), 0);
+        } else if (option.equals("defaultLabels")) {
+            Assert.assertEquals(getBoardService().getLabelsOnBoard(boardId).jsonPath().getList(rootPath).size(), 0);
+        } else {
+            Assert.assertEquals(response.body().jsonPath().getString(option.replace('_', '.')), value);
+        }
     }
 
     private void checkStatusCode() {
