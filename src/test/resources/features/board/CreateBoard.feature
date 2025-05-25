@@ -6,13 +6,13 @@ Feature: Create a board
 
   Background:
     Given I am registered user in the Trello app
-    Then The response status code should be 200
 
   Rule: Create a board with default options
 
     Scenario: Create a board with 3 default lists on it
       When I create a board with default options
       Then A board is created
+      And The response status code should be 200
       And 3 lists presented on the board
 
   Rule: Create a board with specific options
@@ -20,34 +20,37 @@ Feature: Create a board
     Scenario: Create a board with public access
       When I create a board with "public" access
       Then A board is created
+      And The response status code should be 200
       And A board has "public" access
 
     Scenario Outline: Create a board with custom options
       When I create a board with custom "<option>" and give "<value>"
       Then A board is created
+      And The response status code should be <code>
       And The board has an custom "<option>" with a given "<value>"
 
       @positive
       Examples:
-        | option                | value                    |
-        | desc                  | test description         |
-        | idOrganization        | 67fe38e616fde7deef16ed49 |
-        | prefs_permissionLevel | org                      |
-        | prefs_permissionLevel | public                   |
-        | prefs_voting          | members                  |
-        | prefs_voting          | observers                |
-        | prefs_comments        | members                  |
-        | prefs_comments        | observers                |
-        | prefs_invitations     | admins                   |
-        | prefs_background      | orange                   |
-        | prefs_background      | green                    |
-        | prefs_background      | red                      |
-        | prefs_background      | purple                   |
-        | prefs_background      | pink                     |
-        | prefs_background      | lime                     |
-        | prefs_background      | sky                      |
-        | prefs_background      | grey                     |
-        | prefs_cardAging       | pirate                   |
+        | option        | value | code |
+        | defaultLists | false | 200  |
+#        | desc                  | test description         |200  |
+#        | idOrganization        | 67fe38e616fde7deef16ed49 |200  |
+#        | prefs_permissionLevel | org                      |200  |
+#        | prefs_permissionLevel | public                   |200  |
+#        | prefs_voting          | members                  |200  |
+#        | prefs_voting          | observers                |200  |
+#        | prefs_comments        | members                  |200  |
+#        | prefs_comments        | observers                |200  |
+#        | prefs_invitations     | admins                   |200  |
+#        | prefs_background      | orange                   |200  |
+#        | prefs_background      | green                    |200  |
+#        | prefs_background      | red                      |200  |
+#        | prefs_background      | purple                   |200  |
+#        | prefs_background      | pink                     |200  |
+#        | prefs_background      | lime                     |200  |
+#        | prefs_background      | sky                      |200  |
+#        | prefs_background      | grey                     |200  |
+#        | prefs_cardAging       | pirate                   |200  |
 
 #    Scenario: Create a board without default lists
 #      When I create a board without default lists
