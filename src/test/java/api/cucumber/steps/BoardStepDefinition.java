@@ -106,7 +106,8 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("The board is removed")
     public void the_board_is_removed() {
-        checkStatusCode();
+        Assert.assertEquals(getBoardService().getBoard(boardId).asString(), "The requested resource was not found.");
+        Assert.assertThrows(RuntimeException.class, () -> getBoardService().getBoard(boardId).body().jsonPath().getString(rootPath));
     }
 
     @Then("Invitation sent by email")

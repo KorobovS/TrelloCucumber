@@ -13,3 +13,4 @@ Feature: Delete a board
     Scenario: I delete a board
       When I delete a board
       Then The board is removed
+      And The response status code should be 200
