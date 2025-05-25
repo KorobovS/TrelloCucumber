@@ -159,8 +159,16 @@ public class BoardService extends BaseService {
 
     @Step("Invite member to a board with id - {'boardId'} via email")
     public Response inviteMemberToBoardViaEmail(String boardId) {
-        requestSpecification.param("email", "ironman-968-privet-test@ya.ru");
-        requestSpecification.param("allowBillableGuest", true);
+        requestSpecification.param("email", "krabik504@yandex.ru");
+//        requestSpecification.param("allowBillableGuest", true);
+        Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId + MEMBERS_BASE_PATH, requestSpecification);
+        initRequestSpecification();
+        return response;
+    }
+
+    @Step("Invite member to a board with id - {'boardId'} via email with option - {'option'} and value - {'value'}")
+    public Response inviteMemberToBoardViaEmailWithOptionAndValue(String boardId, String option, String value) {
+        requestSpecification.queryParam("email", "krabik504@yandex.ru");
         Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId + MEMBERS_BASE_PATH, requestSpecification);
         initRequestSpecification();
         return response;

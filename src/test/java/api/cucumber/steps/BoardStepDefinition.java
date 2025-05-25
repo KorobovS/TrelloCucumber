@@ -74,6 +74,11 @@ public class BoardStepDefinition extends BaseTest {
         response = getBoardService().inviteMemberToBoardViaEmail(boardId);
     }
 
+    @When("I send an invitation to email with {string} and {string}")
+    public void i_send_an_invitation_to_email_with_option_and_value(String option, String value) {
+        response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
+    }
+
     @Then("A board is created")
     public void a_board_is_created() {
         checkStatusCode();
@@ -113,6 +118,12 @@ public class BoardStepDefinition extends BaseTest {
     @Then("Invitation sent by email")
     public void invitation_sent_by_email() {
         checkStatusCode();
+    }
+
+    @Then("Invitation sent by email with {string} and {string}")
+    public void invitation_sent_by_email_with_option_and_value(String option, String value) {
+        System.out.println(response.body().jsonPath().getString("."));
+        Assert.assertEquals(response.body().jsonPath().getString("." + option), value);
     }
 
     @And("{int} lists presented on the board")
