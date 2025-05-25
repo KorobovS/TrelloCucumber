@@ -81,32 +81,37 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("A board is created")
     public void a_board_is_created() {
-        checkStatusCode();
+        Assert.assertNotNull(getBoardService().getBoard(boardId).body().jsonPath().get(rootPath));
+        Assert.assertEquals(response.body().jsonPath().getString("id"), boardId);
     }
 
     @Then("I got resource boards")
     public void i_got_resource_boards() {
-        checkStatusCode();
+        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
     }
 
     @Then("I got the resources by lists")
     public void i_got_the_resources_by_lists() {
-        checkStatusCode();
+        Assert.assertNotNull(getBoardService().getListsOfABoard(boardId).body().jsonPath().get(rootPath));
+        Assert.assertEquals(getBoardService().getListsOfABoard(boardId).body().jsonPath().getList(rootPath).size(), 3);
     }
 
     @Then("I got the resources by members")
     public void i_got_the_resources_by_members() {
-        checkStatusCode();
+        Assert.assertNotNull(getBoardService().getMembers(boardId).body().jsonPath().get(rootPath));
+        Assert.assertEquals(getBoardService().getMembers(boardId).body().jsonPath().getList(rootPath).size(), 1);
     }
 
     @Then("I got the resources by cards")
     public void i_got_the_resources_by_cards() {
-        checkStatusCode();
+        Assert.assertNotNull(getBoardService().getCards(boardId).body().jsonPath().get(rootPath));
+        Assert.assertEquals(getBoardService().getCards(boardId).body().jsonPath().getList(rootPath).size(), 0);
     }
 
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
-        checkStatusCode();
+        Assert.assertNotNull(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().get(rootPath));
+        Assert.assertEquals(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().getList(rootPath).size(), 6);
     }
 
     @Then("The board is removed")
