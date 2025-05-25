@@ -28,7 +28,9 @@ public class BoardService extends BaseService {
 
         requestSpecification.queryParam("name", nameOfTheBoard).queryParam(option, valueOption);
         Response response = apiClient.post(BoardEndPoints.BOARDS_BASE_PATH, requestSpecification);
+
         initRequestSpecification();
+
         return response;
     }
 
