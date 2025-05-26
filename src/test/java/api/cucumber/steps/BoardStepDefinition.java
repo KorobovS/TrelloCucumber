@@ -127,7 +127,8 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("Invitation sent by email with {string} and {string}")
     public void invitation_sent_by_email_with_option_and_value(String option, String value) {
-        System.out.println(response.body().jsonPath().getString("."));
+//        System.out.println(response.body().jsonPath().getList("members").get(1));
+//        System.out.println(response.body().jsonPath().getString("."));
         Assert.assertEquals(response.body().jsonPath().getString("." + option), value);
     }
 
