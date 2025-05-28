@@ -58,6 +58,14 @@ public class BoardService extends BaseService {
         return response;
     }
 
+    @Step("Update Board: id board = {boardId}, field board = {field}, value = {value}")
+    public Response updateFieldBoard(String boardId, String field, String value) {
+        requestSpecification.queryParam(field, value);
+        Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId, requestSpecification);
+        initRequestSpecification();
+        return response;
+    }
+
     @Step("Create a Label on a Board: id board = {boardId}, label name = {nameOfLabel}, label color = {color}")
     public Response createLabelOnBoard(String boardId, String nameOfLabel, String color) {
         requestSpecification.queryParam("name", nameOfLabel);
@@ -85,7 +93,7 @@ public class BoardService extends BaseService {
     @Step("getting a field - {fieldName}, from a bord which id is - {boardId}")
     public Response getAField(String boardId, String fieldName) {
 
-        Response response = apiClient.get(BoardEndPoints.BOARDS_BASE_PATH + boardId + fieldName, requestSpecification);
+        Response response = apiClient.get(BoardEndPoints.BOARDS_BASE_PATH + boardId + "/" + fieldName, requestSpecification);
         initRequestSpecification();
         return response;
     }
@@ -168,7 +176,7 @@ public class BoardService extends BaseService {
 
     @Step("Invite member to a board with id - {'boardId'} via email with option - {'option'} and value - {'value'}")
     public Response inviteMemberToBoardViaEmailWithOptionAndValue(String boardId, String option, String value) {
-        requestSpecification.queryParam("email", "krabik504@yandex.ru");
+        requestSpecification.queryParam("email", "krabik504@yandex.ru").queryParam(option, value);
         Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId + MEMBERS_BASE_PATH, requestSpecification);
         initRequestSpecification();
         return response;

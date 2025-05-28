@@ -8,9 +8,9 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Map;
 
-import static api.base.TestData.BoardTestData.BOARD_NAME;
-import static api.base.TestData.BoardTestData.boardId;
+import static api.base.TestData.BoardTestData.*;
 import static api.base.TestData.response;
 import static io.restassured.RestAssured.rootPath;
 
@@ -23,19 +23,21 @@ public class BoardStepDefinition extends BaseTest {
 
     @When("I create a board with default options")
     public void i_create_a_board_with_default_options() {
-        response = getBoardService().createBoard(BOARD_NAME);
+        response = getBoardService().createBoard(boardName);
         boardId = response.body().jsonPath().getString("id");
+        boardUrl = response.body().jsonPath().getString("url");
+        boardDesc = response.body().jsonPath().getString("desc");
     }
 
     @When("I create a board with {string} access")
     public void i_create_a_board_with_public_access(String valueOption) {
-        response = getBoardService().createCustomBoard(BOARD_NAME, "prefs_permissionLevel", valueOption);
+        response = getBoardService().createCustomBoard(boardName, "prefs_permissionLevel", valueOption);
         boardId = response.body().jsonPath().getString("id");
     }
 
     @When("I create a board with custom {string} and give {string}")
     public void i_create_a_board_with_custom_option(String option, String value) {
-        response = getBoardService().createCustomBoard(BOARD_NAME, option, value);
+        response = getBoardService().createCustomBoard(boardName, option, value);
         boardId = response.body().jsonPath().getString("id");
     }
 
@@ -77,6 +79,24 @@ public class BoardStepDefinition extends BaseTest {
     @When("I send an invitation to email with {string} and {string}")
     public void i_send_an_invitation_to_email_with_option_and_value(String option, String value) {
         response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
+    }
+
+    @When("I am requesting {string} data")
+    public void i_am_requesting_field_data(String field) {
+        if (field.equals("prefs/background")) {
+            response = getBoardService().getBoard(boardId);
+            return;
+        }
+        response = getBoardService().getAField(boardId, field);
+    }
+
+    @When("I update {string} to the new {string} on the board")
+    public void i_am_updating_the_field_on_board(String field, String value) {
+        response = getBoardService().updateFieldBoard(boardId, field, value);
+        boardDesc = response.body().jsonPath().getString("desc");
+        boardName = response.body().jsonPath().getString("name");
+        boardBackground = response.body().jsonPath().getString("prefs.background");
+        System.out.println(response.body().jsonPath().getString("prefs.background") + "***");
     }
 
     @Then("A board is created")
@@ -129,7 +149,35 @@ public class BoardStepDefinition extends BaseTest {
     public void invitation_sent_by_email_with_option_and_value(String option, String value) {
 //        System.out.println(response.body().jsonPath().getList("members").get(1));
 //        System.out.println(response.body().jsonPath().getString("."));
-        Assert.assertEquals(response.body().jsonPath().getString("." + option), value);
+        Map<String, String> member = (Map<String, String>) response.body().jsonPath().getList("members").get(1);
+
+        Assert.assertEquals(member.get(option), value);
+    }
+
+    @Then("I got {string} with {string}")
+    public void i_got_data_key_value(String field, String value) {
+
+        switch (field) {
+            case ("name"):
+                value = boardName;
+                break;
+            case ("dateLastActivity"):
+                value = null;
+                break;
+            case ("desc"):
+                value = boardDesc;
+                break;
+            case ("url"):
+                value = boardUrl;
+                break;
+            case ("prefs/background"):
+                Assert.assertEquals(response.body().jsonPath().getString("prefs.background"), value);
+                return;
+            default:
+                System.out.println("Error field");
+        }
+
+        Assert.assertEquals(response.body().jsonPath().getString("_value"), value);
     }
 
     @And("{int} lists presented on the board")

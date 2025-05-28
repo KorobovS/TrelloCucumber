@@ -6,7 +6,7 @@ Feature: Delete a board
 
   Background:
     Given I am registered user in the Trello app
-    And I create a board with default options
+    And I create a board with "public" access
 
   Rule: Removing a board
 

@@ -9,20 +9,22 @@ final public class TestData {
     public static Response response;
 
     public final static class BoardTestData {
-        public final static String BOARD_NAME = BASE_BOARD_NAME + "Board";
         public final static String BOARD_NAME_CREATED_WITH_SPECIFIC_OPTIONS = BASE_BOARD_NAME + "specific options";
         public final static String NAME_FOR_LIST = "List test API";
         public final static String NAME_FOR_A_LABEL = "Api_Label";
         public final static String COLOR_OF_A_LABEL = "red";
-        public final static String FIELD_NAME = "/name";
+        public final static String FIELD_NAME = "name";
         public final static String EXPECTED_RESULT = "[]";
         public final static String NAME_OF_A_FILTER = "closed";
         public final static String NEW_NAME_FOR_A_BOARD = "New BoardApiTest";
         public final static String PERMISSION_LEVEL_PUBLIC = "public";
 
+        public static String boardName = BASE_BOARD_NAME + "Board";
         public static String boardId;
-        public static String DEFIEND_PERMISSION_BOARD_ID;
-        public static String boardName;
+        public static String boardUrl;
+        public static String boardDesc;
+        public static String boardBackground;
+        public static String defiendPermissionBoardId;
         public static String labelId;
         public static String listId;
     }
