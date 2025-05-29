@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
 import org.testng.Assert;
 
 import java.util.List;
@@ -25,14 +26,14 @@ public class BoardStepDefinition extends BaseTest {
     public void i_create_a_board_with_default_options() {
         response = getBoardService().createBoard(boardName);
         boardId = response.body().jsonPath().getString("id");
-        boardUrl = response.body().jsonPath().getString("url");
-        boardDesc = response.body().jsonPath().getString("desc");
     }
 
     @When("I create a board with {string} access")
     public void i_create_a_board_with_public_access(String valueOption) {
         response = getBoardService().createCustomBoard(boardName, "prefs_permissionLevel", valueOption);
         boardId = response.body().jsonPath().getString("id");
+        boardUrl = response.body().jsonPath().getString("url");
+        boardDesc = response.body().jsonPath().getString("desc");
     }
 
     @When("I create a board with custom {string} and give {string}")
@@ -149,6 +150,7 @@ public class BoardStepDefinition extends BaseTest {
     public void invitation_sent_by_email_with_option_and_value(String option, String value) {
 //        System.out.println(response.body().jsonPath().getList("members").get(1));
 //        System.out.println(response.body().jsonPath().getString("."));
+        response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
         Map<String, String> member = (Map<String, String>) response.body().jsonPath().getList("members").get(1);
 
         Assert.assertEquals(member.get(option), value);
