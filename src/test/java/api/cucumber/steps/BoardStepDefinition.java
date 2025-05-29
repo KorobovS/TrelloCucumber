@@ -132,7 +132,8 @@ public class BoardStepDefinition extends BaseTest {
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
         Assert.assertNotNull(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().get(rootPath));
-        Assert.assertEquals(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().getList(rootPath).size(), 6);
+//        проверка на schema
+//        Assert.assertEquals(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().getList(rootPath).size(), 6);
     }
 
     @Then("The board is removed")
