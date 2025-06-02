@@ -9,6 +9,7 @@ import org.testng.Assert;
 import static api.base.TestData.BoardTestData.boardId;
 import static api.base.TestData.LabelsTestData.labelId;
 import static api.base.TestData.response;
+import static io.restassured.RestAssured.rootPath;
 
 public class CucumberStepsLabels extends BaseTest {
 

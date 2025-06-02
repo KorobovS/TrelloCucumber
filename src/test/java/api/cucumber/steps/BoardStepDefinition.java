@@ -5,7 +5,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.response.Response;
 import org.testng.Assert;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class BoardStepDefinition extends BaseTest {
 
     @Given("I am registered user in the Trello app")
     public void i_am_registered_user_in_the_trello_app() {
-
     }
 
     @When("I create a board with default options")
@@ -97,7 +95,6 @@ public class BoardStepDefinition extends BaseTest {
         boardDesc = response.body().jsonPath().getString("desc");
         boardName = response.body().jsonPath().getString("name");
         boardBackground = response.body().jsonPath().getString("prefs.background");
-        System.out.println(response.body().jsonPath().getString("prefs.background") + "***");
     }
 
     @Then("A board is created")
@@ -132,8 +129,6 @@ public class BoardStepDefinition extends BaseTest {
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
         Assert.assertNotNull(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().get(rootPath));
-//        проверка на schema
-//        Assert.assertEquals(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().getList(rootPath).size(), 6);
     }
 
     @Then("The board is removed")
@@ -149,8 +144,6 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("Invitation sent by email with {string} and {string}")
     public void invitation_sent_by_email_with_option_and_value(String option, String value) {
-//        System.out.println(response.body().jsonPath().getList("members").get(1));
-//        System.out.println(response.body().jsonPath().getString("."));
         response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
         Map<String, String> member = (Map<String, String>) response.body().jsonPath().getList("members").get(1);
 

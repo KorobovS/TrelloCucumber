@@ -13,6 +13,7 @@ import java.util.List;
 import static api.base.TestData.BoardTestData.EXPECTED_RESULT;
 import static api.base.TestData.BoardTestData.boardId;
 import static api.base.TestData.response;
+import static io.restassured.RestAssured.rootPath;
 
 public class CucumberStepsBoards extends BaseTest {
 
@@ -39,7 +40,7 @@ public class CucumberStepsBoards extends BaseTest {
     }
 
     @When("I get label on a board")
-    public void getLabel() {
+    public void getLabels() {
         response = getBoardService().getLabelsOnBoard(boardId);
     }
 

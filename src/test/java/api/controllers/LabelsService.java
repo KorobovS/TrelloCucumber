@@ -14,14 +14,27 @@ public class LabelsService extends BaseService {
         requestSpecification.queryParam("idBoard", boardId);
 
         Response response = apiClient.post(LABELS_BASE_PATH, requestSpecification);
+
         initRequestSpecification();
+
         return response;
     }
 
     @Step("Get a Label: id label = {labelId}")
     public Response getLabel(String labelId) {
         Response response = apiClient.get(LABELS_BASE_PATH + labelId, requestSpecification);
+
         initRequestSpecification();
+
+        return response;
+    }
+
+    @Step("Get a Label with parameter: id label = {labelId}, {parameter} = {value}")
+    public Response getLabelWithParameter(String labelId, String parameter, String value) {
+        Response response = apiClient.get(LABELS_BASE_PATH + labelId, requestSpecification.queryParam(parameter, value));
+
+        initRequestSpecification();
+
         return response;
     }
 
@@ -31,24 +44,28 @@ public class LabelsService extends BaseService {
         requestSpecification.queryParam("color", newColor);
 
         Response response = apiClient.put(LABELS_BASE_PATH + labelId, requestSpecification);
+
         initRequestSpecification();
+
         return response;
     }
 
     @Step("Update field Label: label id = {labelId}, field = {field}, value = {value]")
     public Response updateFieldLabel(String labelId, String field, String value) {
         requestSpecification.queryParam("value", value);
-
         Response response = apiClient.put(LABELS_BASE_PATH + labelId + "/" + field, requestSpecification);
+
         initRequestSpecification();
+
         return response;
     }
 
     @Step("Delete Label: label id = {labelId}")
     public Response deleteLabel(String labelId) {
-
         Response response = apiClient.delete(LABELS_BASE_PATH + labelId, requestSpecification);
+
         initRequestSpecification();
+
         return response;
     }
 }
