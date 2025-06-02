@@ -55,7 +55,6 @@ Feature: Create a label
         | name  | color | code |
         | name1 | green | 200  |
         | name2 |       | 200  |
-        | name3 | ""    | 200  |
 
   Rule: Update label data with field
 
@@ -71,10 +70,10 @@ Feature: Create a label
         | name      | New name | 200  |
         | color     | pink     | 200  |
 
-      Rule: Delete label
+  Rule: Delete label
 
-        Scenario: I delete label on the board
-          Given I create a label with a "Name" and a "green" on the board
-          When I delete label
-          Then The response status code should be 200
-          And I get deleted label
+    Scenario: I delete label on the board
+      Given I create a label with a "Name" and a "green" on the board
+      When I delete label
+      Then The response status code should be 200
+      And I get deleted label

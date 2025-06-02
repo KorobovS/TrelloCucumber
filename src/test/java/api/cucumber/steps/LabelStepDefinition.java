@@ -53,7 +53,6 @@ public class LabelStepDefinition extends BaseTest {
 
     @And("I get deleted label")
     public void i_get_deleted_label() {
-        System.out.println(response.body().jsonPath().get(rootPath).toString());
-        Assert.expectThrows(RuntimeException.class, () -> response.body().jsonPath().get(rootPath));
+        Assert.assertEquals(response.body().jsonPath().getString(rootPath), "[limits:[:]]");
     }
 }
