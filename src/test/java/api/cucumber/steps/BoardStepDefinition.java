@@ -8,7 +8,6 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.Map;
 
 import static api.base.TestData.BoardTestData.*;
 import static api.base.TestData.response;
@@ -115,25 +114,25 @@ public class BoardStepDefinition extends BaseTest {
 
     @Then("I got the resources by lists")
     public void i_got_the_resources_by_lists() {
-        Assert.assertNotNull(getBoardService().getListsOfABoard(boardId).body().jsonPath().get(rootPath));
-        Assert.assertEquals(getBoardService().getListsOfABoard(boardId).body().jsonPath().getList(rootPath).size(), 3);
+        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
+        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 3);
     }
 
     @Then("I got the resources by members")
     public void i_got_the_resources_by_members() {
-        Assert.assertNotNull(getBoardService().getMembers(boardId).body().jsonPath().get(rootPath));
-        Assert.assertEquals(getBoardService().getMembers(boardId).body().jsonPath().getList(rootPath).size(), 1);
+        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
+        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 1);
     }
 
     @Then("I got the resources by cards")
     public void i_got_the_resources_by_cards() {
-        Assert.assertNotNull(getBoardService().getCards(boardId).body().jsonPath().get(rootPath));
-        Assert.assertEquals(getBoardService().getCards(boardId).body().jsonPath().getList(rootPath).size(), 0);
+        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
+        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 0);
     }
 
     @Then("I got the resources by labels")
     public void i_got_the_resources_by_labels() {
-        Assert.assertNotNull(getBoardService().getLabelsOnBoard(boardId).body().jsonPath().get(rootPath));
+        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
     }
 
     @Then("The board is removed")
@@ -196,6 +195,11 @@ public class BoardStepDefinition extends BaseTest {
         } else {
             Assert.assertEquals(response.body().jsonPath().getString(option.replace('_', '.')), value);
         }
+    }
+
+    @And("The response status code should be {int}")
+    public void the_response_status_code_should_be_code(int code) {
+        Assert.assertEquals(response.getStatusCode(), code);
     }
 
     private void checkStatusCode() {

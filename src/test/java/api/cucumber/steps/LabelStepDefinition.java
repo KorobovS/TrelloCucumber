@@ -20,6 +20,16 @@ public class LabelStepDefinition extends BaseTest {
         labelId = response.body().jsonPath().get("id");
     }
 
+    @When("I get label on a board")
+    public void i_get_label_on_a_board() {
+        response = getLabelsSteps().getLabel(labelId);
+    }
+
+    @When("I update label name {string} and color {string}")
+    public void  i_update_label_name_name_and_color_color(String name, String color) {
+        response = getLabelsSteps().updateLabel(labelId, name, color);
+    }
+
     @When("I get labels on a board with {string} = {string}")
     public void i_get_labels_on_a_board_with_parameter_value(String parameter, String value) {
         response = getLabelsSteps().getLabelWithParameter(labelId, parameter, value);
