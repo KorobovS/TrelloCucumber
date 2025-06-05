@@ -19,14 +19,14 @@ public class MembersAPITest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        boardId = getMembersSteps().createABord(BORD_NAME);
-        firstMemberId = getMembersSteps().getTheMembersOfABoard(boardId).jsonPath().getString("id");
+        boardId = getMembersService().createABord(BORD_NAME);
+        firstMemberId = getMembersService().getTheMembersOfABoard(boardId).jsonPath().getString("id");
         firstMemberId = firstMemberId.substring(1, firstMemberId.length() - 1);
     }
 
     @AfterClass
     public void tearDown() {
-        getMembersSteps().deleteBoard(boardId);
+        getMembersService().deleteBoard(boardId);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get a member")
     @Severity(SeverityLevel.NORMAL)
     public void testGetAMember() {
-        Response response = getMembersSteps().getAMember(firstMemberId);
+        Response response = getMembersService().getAMember(firstMemberId);
         String memberIdReceivedBack = response.jsonPath().getString("id");
 
         Assert.assertEquals(memberIdReceivedBack, firstMemberId);
@@ -45,7 +45,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Update member")
     @Severity(SeverityLevel.NORMAL)
     public void testUpdateMember() {
-        Response response = getMembersSteps().updateMember(firstMemberId);
+        Response response = getMembersService().updateMember(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -55,7 +55,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get list the actions for a member")
     @Severity(SeverityLevel.NORMAL)
     public void testGetMemberActions() {
-        Response response = getMembersSteps().getMemberActions(firstMemberId);
+        Response response = getMembersService().getMemberActions(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -65,7 +65,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get a member's custom board backgrounds")
     @Severity(SeverityLevel.NORMAL)
     public void testGetMemberCustomBackgrounds() {
-        Response response = getMembersSteps().getMemberCustomBackgrounds(firstMemberId);
+        Response response = getMembersService().getMemberCustomBackgrounds(firstMemberId);
 
         backgroundId = response.body().jsonPath().getString(rootPath + "[0].id");
 
@@ -78,7 +78,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get a member's board background")
     @Severity(SeverityLevel.NORMAL)
     public void testGetBoardBackgroundMember() {
-        Response response = getMembersSteps().getGetBoardBackgroundMember(firstMemberId, backgroundId);
+        Response response = getMembersService().getGetBoardBackgroundMember(firstMemberId, backgroundId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -88,7 +88,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Star a new board on behalf of a Member")
     @Severity(SeverityLevel.NORMAL)
     public void testCreateStarBoard() {
-        Response response = getMembersSteps().getCreateStarBoard(firstMemberId, boardId, POS);
+        Response response = getMembersService().getCreateStarBoard(firstMemberId, boardId, POS);
         starId = response.body().jsonPath().getString("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -99,7 +99,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get a specific boardStar")
     @Severity(SeverityLevel.NORMAL)
     public void testGetBoardStarMember() {
-        Response response = getMembersSteps().getBoardStarMember(firstMemberId, starId);
+        Response response = getMembersService().getBoardStarMember(firstMemberId, starId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -109,7 +109,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Update the position of a starred board")
     @Severity(SeverityLevel.NORMAL)
     public void testUpdatePositionBoardStarMember() {
-        Response response = getMembersSteps().updatePositionBoardStarMember(firstMemberId, starId, UPDATE_POS);
+        Response response = getMembersService().updatePositionBoardStarMember(firstMemberId, starId, UPDATE_POS);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -119,7 +119,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Unstar a board")
     @Severity(SeverityLevel.NORMAL)
     public void testDeleteStarBoard() {
-        Response response = getMembersSteps().deleteStarBoard(firstMemberId, starId);
+        Response response = getMembersService().deleteStarBoard(firstMemberId, starId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -129,7 +129,7 @@ public class MembersAPITest extends BaseTest {
     @Description("List a member's board stars")
     @Severity(SeverityLevel.NORMAL)
     public void testGetMemberBoardStars() {
-        Response response = getMembersSteps().getMemberBoardStars(firstMemberId);
+        Response response = getMembersService().getMemberBoardStars(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -139,7 +139,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Lists the boards that the user is a member of")
     @Severity(SeverityLevel.NORMAL)
     public void testGetBoardsMemberBelongs() {
-        Response response = getMembersSteps().getBoardsMemberBelongs(firstMemberId);
+        Response response = getMembersService().getBoardsMemberBelongs(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -149,7 +149,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Get the boards the member has been invited to")
     @Severity(SeverityLevel.NORMAL)
     public void testGetBoardsMemberInvited() {
-        Response response = getMembersSteps().getBoardsMemberInvited(firstMemberId);
+        Response response = getMembersService().getBoardsMemberInvited(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -159,7 +159,7 @@ public class MembersAPITest extends BaseTest {
     @Description("Gets the cards a member is on")
     @Severity(SeverityLevel.NORMAL)
     public void testGetCardsMember() {
-        Response response = getMembersSteps().getCardsMember(firstMemberId);
+        Response response = getMembersService().getCardsMember(firstMemberId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }

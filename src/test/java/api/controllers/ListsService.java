@@ -4,14 +4,29 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static api.base.PathParameters.ListsPath.*;
+import static api.base.TestData.ListsTestData.baseListId;
+import static api.base.TestData.ListsTestData.boardId;
 
 public class ListsService extends BaseService {
 
 
     @Step("Create a new List: name = {name}")
-    public Response createList(String nameOfTheList, String boardId) {
-        requestSpecification.queryParam("name", nameOfTheList);
+    public Response createList(String name) {
+        requestSpecification.queryParam("name", name);
         requestSpecification.queryParam("idBoard", boardId);
+        Response response = apiClient.post(LISTS_BASE_PATH, requestSpecification);
+
+        initRequestSpecification();
+
+        return response;
+    }
+
+    @Step("Create a new List: name = {name} and position - {position}")
+    public Response createListWithPosition(String name, String position) {
+        requestSpecification.queryParam("name", name);
+        requestSpecification.queryParam("idBoard", boardId);
+        requestSpecification.queryParam("idListSource", baseListId);
+        requestSpecification.queryParam("pos", position);
         Response response = apiClient.post(LISTS_BASE_PATH, requestSpecification);
 
         initRequestSpecification();

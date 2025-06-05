@@ -54,18 +54,3 @@ Feature: Create a board
         | prefs_background      | sky                      | 200  |
         | prefs_background      | grey                     | 200  |
         | prefs_cardAging       | pirate                   | 200  |
-
-#    Scenario: Create a board without default lists
-#      When I create a board without default lists
-#      Then A board is created
-#      And A board doesn't have 3 default lists
-#
-#    Scenario: Create a board with description
-#      When I create a board with description
-#      Then A board is created
-#      And Description is presented on the board
-#
-#    Scenario: Create a board with red colored background
-#      When I create a board with red colored background option
-#      Then A board is created
-#      And The color of background is red

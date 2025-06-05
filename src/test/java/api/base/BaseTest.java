@@ -19,27 +19,27 @@ public class BaseTest {
         return boardService;
     }
 
-    public ChecklistsService getChecklistsSteps() {
+    public ChecklistsService getChecklistsService() {
         return checklistsService;
     }
 
-    public ListsService getListsSteps() {
+    public ListsService getListsService() {
         return listsService;
     }
 
-    public ActionsService getActionsSteps() {
+    public ActionsService getActionsService() {
         return actionsService;
     }
 
-    public CardsService getCardsSteps() {
+    public CardsService getCardsService() {
         return cardsService;
     }
 
-    public LabelsService getLabelsSteps() {
+    public LabelsService getLabelsService() {
         return labelsService;
     }
 
-    public MembersService getMembersSteps() {
+    public MembersService getMembersService() {
         return membersService;
     }
 }

@@ -1,6 +1,7 @@
 package api.cucumber.steps;
 
 import api.base.BaseTest;
+import api.base.TestData;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +11,8 @@ import org.testng.Assert;
 import java.util.List;
 
 import static api.base.TestData.BoardTestData.*;
+import static api.base.TestData.BoardTestData;
+import static api.base.TestData.ListsTestData;
 import static api.base.TestData.response;
 import static io.restassured.RestAssured.rootPath;
 
@@ -28,7 +31,8 @@ public class BoardStepDefinition extends BaseTest {
     @When("I create a board with {string} access")
     public void i_create_a_board_with_public_access(String valueOption) {
         response = getBoardService().createCustomBoard(boardName, "prefs_permissionLevel", valueOption);
-        boardId = response.body().jsonPath().getString("id");
+        BoardTestData.boardId = response.body().jsonPath().getString("id");
+        ListsTestData.boardId = response.body().jsonPath().getString("id");
         boardUrl = response.body().jsonPath().getString("url");
         boardDesc = response.body().jsonPath().getString("desc");
     }

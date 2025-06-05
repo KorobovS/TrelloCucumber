@@ -22,16 +22,16 @@ public class ActionsAPITest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        ActionsTestData.boardId = getActionsSteps().createABord(ActionsTestData.BOARD_NAME);
-        ActionsTestData.toDoListId = getActionsSteps().getIdOfTheFirstListOnABoard(ActionsTestData.boardId);
-        ActionsTestData.actiontId = getActionsSteps().getIdOfTheFirestActionOnABoard(ActionsTestData.boardId);
-        ActionsTestData.idMemberCreator = getActionsSteps().getAnAction(ActionsTestData.actiontId).jsonPath().getString("idMemberCreator");
-        ActionsTestData.idOrganizationThatBelongToAnAction = getActionsSteps().getAnAction(ActionsTestData.actiontId).jsonPath().getString("data.organization.id");
+        ActionsTestData.boardId = getActionsService().createABord(ActionsTestData.BOARD_NAME);
+        ActionsTestData.toDoListId = getActionsService().getIdOfTheFirstListOnABoard(ActionsTestData.boardId);
+        ActionsTestData.actiontId = getActionsService().getIdOfTheFirestActionOnABoard(ActionsTestData.boardId);
+        ActionsTestData.idMemberCreator = getActionsService().getAnAction(ActionsTestData.actiontId).jsonPath().getString("idMemberCreator");
+        ActionsTestData.idOrganizationThatBelongToAnAction = getActionsService().getAnAction(ActionsTestData.actiontId).jsonPath().getString("data.organization.id");
     }
 
     @AfterClass
     public void tearDown() {
-        getActionsSteps().deleteBoard(ActionsTestData.boardId);
+        getActionsService().deleteBoard(ActionsTestData.boardId);
     }
 
     @Test(priority = 0)
@@ -39,7 +39,7 @@ public class ActionsAPITest extends BaseTest {
     @Description("Get the action from a board")
     @Severity(SeverityLevel.NORMAL)
     public void testGetAnAction() {
-        Response response = getActionsSteps().getAnAction(ActionsTestData.actiontId);
+        Response response = getActionsService().getAnAction(ActionsTestData.actiontId);
 
         Assert.assertEquals(response.jsonPath().getString("id"), ActionsTestData.actiontId);
     }
@@ -55,11 +55,11 @@ public class ActionsAPITest extends BaseTest {
         queryParametersForRequestSpec.put("idList",  ActionsTestData.toDoListId);
         queryParametersForRequestSpec.put("name", "card for actions");
 
-        ActionsTestData.cardId = getActionsSteps().createACard(queryParametersForRequestSpec).jsonPath().getString("id");
+        ActionsTestData.cardId = getActionsService().createACard(queryParametersForRequestSpec).jsonPath().getString("id");
 
-        ActionsTestData.actionIdAfterCreatingACard = getActionsSteps().addNewComentToACard(ActionsTestData.cardId, commentForAnAction, ActionsEndPoints.COMMENTS_ENDPOINT).jsonPath().getString("id");
+        ActionsTestData.actionIdAfterCreatingACard = getActionsService().addNewComentToACard(ActionsTestData.cardId, commentForAnAction, ActionsEndPoints.COMMENTS_ENDPOINT).jsonPath().getString("id");
 
-        Response response = getActionsSteps().updateACommentOfTheAction(ActionsTestData.actionIdAfterCreatingACard, updatedCommentForAnAction);
+        Response response = getActionsService().updateACommentOfTheAction(ActionsTestData.actionIdAfterCreatingACard, updatedCommentForAnAction);
         //Для ассерта надо достать обновлённый комент респонса и сверить с updatedCommentForAnAction
     }
 
@@ -70,7 +70,7 @@ public class ActionsAPITest extends BaseTest {
     public void testGetASpecificFieldOnAnAction() {
 
         LocalDate currentDateTime = LocalDate.now();
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.DATE_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.DATE_ENDPOINT);
 
         String recivedDateOfAnAction = response.jsonPath().getString("_value").substring(0, 10);
 
@@ -84,7 +84,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetTheBoardForAnAction() {
 
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.BOARD_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.BOARD_ENDPOINT);
         String boardNameRecivedFromApiCall = response.jsonPath().getString("name");
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -97,7 +97,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetTheCardForAnAction() {
 
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.CARD_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.CARD_ENDPOINT);
         String cardIdRecivedFromApiCall = response.jsonPath().getString("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -110,7 +110,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetTheListForAnAction() {
 
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.LIST_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actionIdAfterCreatingACard, ActionsEndPoints.LIST_ENDPOINT);
         String listIdRecivedFromApiCall = response.jsonPath().getString("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -123,7 +123,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetTheMemberCreatorOfAnAction() {
 
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actiontId, ActionsEndPoints.MEMBER_CREATOR_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actiontId, ActionsEndPoints.MEMBER_CREATOR_ENDPOINT);
         String memberCreatorIdRecivedFromApiCall = response.jsonPath().getString("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -136,7 +136,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetTheOrganizationOfAnAction() {
 
-        Response response = getActionsSteps().getTheResourceOfAnAction(ActionsTestData.actiontId, ActionsEndPoints.ORGANIZATION_ENDPOINT);
+        Response response = getActionsService().getTheResourceOfAnAction(ActionsTestData.actiontId, ActionsEndPoints.ORGANIZATION_ENDPOINT);
 
         String idOfOrganizationRecivedFromApiCall = response.jsonPath().getString("id");
 
@@ -149,7 +149,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetActions_Reactions() {
 
-        Response response = getActionsSteps().getActions_Reactions(ActionsTestData.actiontId);
+        Response response = getActionsService().getActions_Reactions(ActionsTestData.actiontId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.body().asString(), "[]");
@@ -162,7 +162,7 @@ public class ActionsAPITest extends BaseTest {
     public void testCreateReactionForAction() {
 
         String expectedEmojiName = "GRINNING FACE";
-        Response response = getActionsSteps().createReactionForAction(ActionsTestData.actionIdAfterCreatingACard);
+        Response response = getActionsService().createReactionForAction(ActionsTestData.actionIdAfterCreatingACard);
         String actualEmojiName = response.jsonPath().getString("emoji.name");
         ActionsTestData.idOfReaction = response.jsonPath().getString("id");
 
@@ -175,7 +175,7 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testGetActionsReaction() {
 
-        Response response = getActionsSteps().getActionsReaction(ActionsTestData.actionIdAfterCreatingACard, ActionsTestData.idOfReaction);
+        Response response = getActionsService().getActionsReaction(ActionsTestData.actionIdAfterCreatingACard, ActionsTestData.idOfReaction);
         String idOfReactionReceivedBack = response.jsonPath().getString("id");
 
         Assert.assertEquals(idOfReactionReceivedBack, ActionsTestData.idOfReaction);
@@ -189,7 +189,7 @@ public class ActionsAPITest extends BaseTest {
 
         JSONObject jsonObject = new JSONObject();
 
-        Response response = getActionsSteps().deleteActionsReaction(ActionsTestData.actionIdAfterCreatingACard, ActionsTestData.idOfReaction);
+        Response response = getActionsService().deleteActionsReaction(ActionsTestData.actionIdAfterCreatingACard, ActionsTestData.idOfReaction);
         Assert.assertEquals(response.body().asString(), jsonObject.toString());
     }
 
@@ -199,10 +199,10 @@ public class ActionsAPITest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testDeleteAnAction() {
         String responseMessageForDeletedAction = "The requested resource was not found.";
-        Response response = getActionsSteps().deleteAnAction(ActionsTestData.actionIdAfterCreatingACard);
+        Response response = getActionsService().deleteAnAction(ActionsTestData.actionIdAfterCreatingACard);
 
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertEquals(getActionsSteps().getAnAction(ActionsTestData.actionIdAfterCreatingACard).asPrettyString(), responseMessageForDeletedAction);
+        Assert.assertEquals(getActionsService().getAnAction(ActionsTestData.actionIdAfterCreatingACard).asPrettyString(), responseMessageForDeletedAction);
 
     }
 }

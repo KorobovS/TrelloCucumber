@@ -16,33 +16,33 @@ public class LabelStepDefinition extends BaseTest {
 
     @When("I create a label with a {string} and a {string} on the board")
     public void i_create_a_label_with_a_parameter_and_a_value_on_the_board(String name, String color) {
-        Response response = getLabelsSteps().createLabel(name, color, boardId);
+        Response response = getLabelsService().createLabel(name, color, boardId);
         labelId = response.body().jsonPath().get("id");
     }
 
     @When("I get label on a board")
     public void i_get_label_on_a_board() {
-        response = getLabelsSteps().getLabel(labelId);
+        response = getLabelsService().getLabel(labelId);
     }
 
     @When("I update label name {string} and color {string}")
     public void  i_update_label_name_name_and_color_color(String name, String color) {
-        response = getLabelsSteps().updateLabel(labelId, name, color);
+        response = getLabelsService().updateLabel(labelId, name, color);
     }
 
     @When("I get labels on a board with {string} = {string}")
     public void i_get_labels_on_a_board_with_parameter_value(String parameter, String value) {
-        response = getLabelsSteps().getLabelWithParameter(labelId, parameter, value);
+        response = getLabelsService().getLabelWithParameter(labelId, parameter, value);
     }
 
     @When("I update label {string} with {string}")
     public void i_update_label_parameter_with_value(String parameter, String value) {
-        response = getLabelsSteps().updateFieldLabel(labelId, parameter, value);
+        response = getLabelsService().updateFieldLabel(labelId, parameter, value);
     }
 
     @When("I delete label")
     public void i_delete_label() {
-        response = getLabelsSteps().deleteLabel(labelId);
+        response = getLabelsService().deleteLabel(labelId);
     }
 
     @Then("I got label with {string} = {string}")
@@ -56,7 +56,7 @@ public class LabelStepDefinition extends BaseTest {
 
     @And("I got a label with the specified {string} and {string}")
     public void i_got_a_label_with_the_specified_name_and_color(String name, String color) {
-        response = getLabelsSteps().getLabel(labelId);
+        response = getLabelsService().getLabel(labelId);
         Assert.assertEquals(response.body().jsonPath().getString("name"), name);
         Assert.assertEquals(response.body().jsonPath().getString("color"), color);
     }

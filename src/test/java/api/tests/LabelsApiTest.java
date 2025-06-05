@@ -18,12 +18,12 @@ public class LabelsApiTest extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        boardId = getLabelsSteps().createABord(BOARD_NAME);
+        boardId = getLabelsService().createABord(BOARD_NAME);
     }
 
     @AfterClass
     public void tearDown() {
-        getLabelsSteps().deleteBoard(boardId);
+        getLabelsService().deleteBoard(boardId);
     }
 
     @Test()
@@ -31,7 +31,7 @@ public class LabelsApiTest extends BaseTest {
     @Description("Create a new Label on a Board")
     @Severity(SeverityLevel.NORMAL)
     public void testCreateLabel() {
-        Response response = getLabelsSteps().createLabel(LABEL_NAME, COLOR, boardId);
+        Response response = getLabelsService().createLabel(LABEL_NAME, COLOR, boardId);
 
         labelId = response.body().jsonPath().get("id");
 
@@ -45,7 +45,7 @@ public class LabelsApiTest extends BaseTest {
     @Description("Get label")
     @Severity(SeverityLevel.NORMAL)
     public void testGetLabel() {
-        Response response = getLabelsSteps().getLabel(labelId);
+        Response response = getLabelsService().getLabel(labelId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.body().jsonPath().getString("id"), labelId);
@@ -56,7 +56,7 @@ public class LabelsApiTest extends BaseTest {
     @Description("Update label")
     @Severity(SeverityLevel.NORMAL)
     public void testUpdateLabel() {
-        Response response = getLabelsSteps().updateLabel(labelId, NEW_NAME, NEW_COLOR);
+        Response response = getLabelsService().updateLabel(labelId, NEW_NAME, NEW_COLOR);
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.body().jsonPath().getString("name"), NEW_NAME);
@@ -68,7 +68,7 @@ public class LabelsApiTest extends BaseTest {
     @Description("Delete label")
     @Severity(SeverityLevel.NORMAL)
     public void testDeleteLabel() {
-        Response response = getLabelsSteps().deleteLabel(labelId);
+        Response response = getLabelsService().deleteLabel(labelId);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -78,7 +78,7 @@ public class LabelsApiTest extends BaseTest {
     @Description("Update field label")
     @Severity(SeverityLevel.NORMAL)
     public void testUpdateFieldLabel(String field, String value) {
-        Response response = getLabelsSteps().updateFieldLabel(labelId, field, value);
+        Response response = getLabelsService().updateFieldLabel(labelId, field, value);
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.body().jsonPath().getString(field), value);
