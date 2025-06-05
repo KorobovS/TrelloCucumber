@@ -25,7 +25,7 @@ Feature: Create a label
   Rule: Get label data
 
     Scenario: I get all label
-      When I get label on a board
+      When I get labels on a board
       Then I got the resources by labels
       And The response status code should be 200
 
