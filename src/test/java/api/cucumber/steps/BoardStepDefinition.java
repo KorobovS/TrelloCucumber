@@ -95,7 +95,11 @@ public class BoardStepDefinition extends BaseTest {
     @When("I send an invitation to email with {string}")
     public void i_send_an_invitation_to_email_with_custom_name(String name) {
         response = getBoardService().inviteMemberToBoardViaEmailWithCustomName(boardId, name);
-        System.out.println(response.body().jsonPath().getString(rootPath));
+    }
+
+    @Then("Invitation sent by email with {string} and {string}")
+    public void invitation_sent_by_email_with_option_and_value(String option, String value) {
+        response = getBoardService().inviteMemberToBoardViaEmailAndOptions(boardId, option, value);
     }
 
     @Then("A board is created")

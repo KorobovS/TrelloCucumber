@@ -174,6 +174,13 @@ public class BoardService extends BaseService {
         return response;
     }
 
+    public Response inviteMemberToBoardViaEmailAndOptions(String boardId, String option, String value) {
+        requestSpecification.queryParam("email", "krabik504@yandex.ru").queryParam(option, value);
+        Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId + MEMBERS_BASE_PATH, requestSpecification);
+        initRequestSpecification();
+        return response;
+    }
+
     @Step("Invite member to a board with id - {boardId} via email with name = {name}")
     public Response inviteMemberToBoardViaEmailWithCustomName(String boardId, String name) {
         requestSpecification.param("email", "krabik504@yandex.ru");
