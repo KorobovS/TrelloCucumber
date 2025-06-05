@@ -41,7 +41,6 @@ public class ListStepDefinition extends BaseTest {
     @And("The list name field matches the {string}")
     public void the_list_name_field_matches_the_name(String expected) {
         Assert.assertEquals(response.body().jsonPath().getString("name"), expected);
-        System.out.println(response.body().jsonPath().getString(rootPath));
     }
 
     @Step("Check the list position")
