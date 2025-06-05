@@ -10,7 +10,7 @@ import static api.base.PathParameters.CardsEndPoints.CARDS_BASE_PATH;
 import static api.base.PathParameters.CheckListsPath.CHECKLISTS_BASE_PATH;
 import static api.base.PathParameters.LabelsPath.LABELS_BASE_PATH;
 import static api.base.PathParameters.ListsPath.LISTS_BASE_PATH;
-import static api.base.PathParameters.MembersPath.MEMBERS_BASE_PATH;
+import static api.base.PathParameters.BoardEndPoints.MEMBERS_BASE_PATH;
 
 public class BoardService extends BaseService {
 
@@ -174,9 +174,14 @@ public class BoardService extends BaseService {
         return response;
     }
 
-    @Step("Invite member to a board with id - {'boardId'} via email with option - {'option'} and value - {'value'}")
-    public Response inviteMemberToBoardViaEmailWithOptionAndValue(String boardId, String option, String value) {
-        requestSpecification.queryParam("email", "krabik504@yandex.ru").queryParam(option, value);
+    @Step("Invite member to a board with id - {boardId} via email with name = {name}")
+    public Response inviteMemberToBoardViaEmailWithCustomName(String boardId, String name) {
+        requestSpecification.param("email", "krabik504@yandex.ru");
+        requestSpecification.body(String.format("""
+                {
+                    "fullName": "%s"
+                }
+                """, name));
         Response response = apiClient.put(BoardEndPoints.BOARDS_BASE_PATH + boardId + MEMBERS_BASE_PATH, requestSpecification);
         initRequestSpecification();
         return response;
@@ -184,7 +189,7 @@ public class BoardService extends BaseService {
 
     @Step("Get boardStars on a Board: id board = {boardId}")
     public Response getBoardStarsOnBoard(String boardId) {
-        Response response = apiClient.get(BoardEndPoints.BOARDS_BASE_PATH + boardId + BoardEndPoints.boardStarsEnPoint, requestSpecification);
+        Response response = apiClient.get(BoardEndPoints.BOARDS_BASE_PATH + boardId + BoardEndPoints.BOARD_STARS_EN_POINT, requestSpecification);
         initRequestSpecification();
         return response;
     }

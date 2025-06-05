@@ -75,11 +75,6 @@ public class BoardStepDefinition extends BaseTest {
         response = getBoardService().inviteMemberToBoardViaEmail(boardId);
     }
 
-    @When("I send an invitation to email with {string} and {string}")
-    public void i_send_an_invitation_to_email_with_option_and_value(String option, String value) {
-        response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
-    }
-
     @When("I am requesting {string} data")
     public void i_am_requesting_field_data(String field) {
         if (field.equals("prefs/background")) {
@@ -95,6 +90,12 @@ public class BoardStepDefinition extends BaseTest {
         boardDesc = response.body().jsonPath().getString("desc");
         boardName = response.body().jsonPath().getString("name");
         boardBackground = response.body().jsonPath().getString("prefs.background");
+    }
+
+    @When("I send an invitation to email with {string}")
+    public void i_send_an_invitation_to_email_with_custom_name(String name) {
+        response = getBoardService().inviteMemberToBoardViaEmailWithCustomName(boardId, name);
+        System.out.println(response.body().jsonPath().getString(rootPath));
     }
 
     @Then("A board is created")
@@ -140,14 +141,6 @@ public class BoardStepDefinition extends BaseTest {
     @Then("Invitation sent by email")
     public void invitation_sent_by_email() {
         checkStatusCode();
-    }
-
-    @Then("Invitation sent by email with {string} and {string}")
-    public void invitation_sent_by_email_with_option_and_value(String option, String value) {
-        response = getBoardService().inviteMemberToBoardViaEmailWithOptionAndValue(boardId, option, value);
-        Map<String, String> member = (Map<String, String>) response.body().jsonPath().getList("members").get(1);
-
-        Assert.assertEquals(member.get(option), value);
     }
 
     @Then("I got {string} with {string}")

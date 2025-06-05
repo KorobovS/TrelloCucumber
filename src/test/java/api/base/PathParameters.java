@@ -5,9 +5,9 @@ final public class PathParameters {
     public final static class BoardEndPoints {
 
         public final static String BOARDS_BASE_PATH = "/boards/";
-
-        public static String boardStarsEnPoint = "/boardStars";
-        public static String MEMBER_SHIPS_ENDPOINT = "/memberships";
+        public final static String BOARD_STARS_EN_POINT = "/boardStars";
+        public final static String MEMBER_SHIPS_ENDPOINT = "/memberships";
+        public final static String MEMBERS_BASE_PATH = "/members";
     }
 
     public final static class ActionsEndPoints {

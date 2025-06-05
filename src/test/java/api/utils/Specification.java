@@ -32,7 +32,7 @@ public class Specification {
         authoriazing.put("token", token);
 
         return new RequestSpecBuilder()
-//                .log(LogDetail.ALL)
+                .log(LogDetail.ALL)
                 .addFilter(new AllureRestAssured())
                 .setContentType(ContentType.JSON)
                 .addQueryParams(authoriazing)
