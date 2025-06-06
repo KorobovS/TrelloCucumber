@@ -100,6 +100,7 @@ final public class TestData {
         public static final String NAME_FOR_SECOND_BOARD = "Board_for_moving_lists";
         public static String boardId;
         public static String baseListId;
+        public static String listId;
         public static String toDoListId;
         public static String newCreatedListId;
         public static boolean subscribeValue = true;

@@ -53,6 +53,16 @@ public class ListsService extends BaseService {
         return response;
     }
 
+    @Step("Get the list with id = {listId} and fields = {value}")
+    public Response getListWithFields(String listId, String value) {
+        requestSpecification.queryParam("fields", value);
+        Response response = apiClient.get(LISTS_BASE_PATH + listId, requestSpecification);
+
+        initRequestSpecification();
+
+        return response;
+    }
+
     @Step("Archive all existed cards on a list with id = {listId}")
     public Response archiveAllCardOnTheList(String listId) {
         Response response = apiClient.post(LISTS_BASE_PATH + listId + archiveEndPoint, requestSpecification);

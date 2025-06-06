@@ -1,0 +1,307 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "badges": {
+      "type": "object",
+      "properties": {
+        "attachmentsByType": {
+          "type": "object",
+          "properties": {
+            "trello": {
+              "type": "object",
+              "properties": {
+                "board": {
+                  "type": "number"
+                },
+                "card": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "board",
+                "card"
+              ]
+            }
+          },
+          "required": [
+            "trello"
+          ]
+        },
+        "location": {
+          "type": "boolean"
+        },
+        "votes": {
+          "type": "number"
+        },
+        "viewingMemberVoted": {
+          "type": "boolean"
+        },
+        "subscribed": {
+          "type": "boolean"
+        },
+        "fogbugz": {
+          "type": "string"
+        },
+        "checkItems": {
+          "type": "number"
+        },
+        "checkItemsChecked": {
+          "type": "number"
+        },
+        "comments": {
+          "type": "number"
+        },
+        "attachments": {
+          "type": "number"
+        },
+        "description": {
+          "type": "boolean"
+        },
+        "due": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "dueComplete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "attachmentsByType",
+        "location",
+        "votes",
+        "viewingMemberVoted",
+        "subscribed",
+        "fogbugz",
+        "checkItems",
+        "checkItemsChecked",
+        "comments",
+        "attachments",
+        "description",
+        "due",
+        "start",
+        "dueComplete"
+      ]
+    },
+    "checkItemStates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "closed": {
+      "type": "boolean"
+    },
+    "coordinates": {
+      "type": "string"
+    },
+    "creationMethod": {
+      "type": "string"
+    },
+    "dateLastActivity": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "string"
+    },
+    "descData": {
+      "type": "object",
+      "properties": {
+        "emoji": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      },
+      "required": [
+        "emoji"
+      ]
+    },
+    "due": {
+      "type": "string"
+    },
+    "dueReminder": {
+      "type": "string"
+    },
+    "idBoard": {
+      "type": "string"
+    },
+    "idChecklists": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "idLabels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "idBoard": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "idBoard",
+          "name",
+          "color"
+        ]
+      }
+    },
+    "idList": {
+      "type": "string"
+    },
+    "idMembers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "idMembersVoted": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "idShort": {
+      "type": "number"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "object",
+          "properties": {
+            "perBoard": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          },
+          "required": [
+            "perBoard"
+          ]
+        }
+      },
+      "required": [
+        "attachments"
+      ]
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "manualCoverAttachment": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "pos": {
+      "type": "number"
+    },
+    "shortLink": {
+      "type": "string"
+    },
+    "shortUrl": {
+      "type": "string"
+    },
+    "subscribed": {
+      "type": "boolean"
+    },
+    "url": {
+      "type": "string"
+    },
+    "cover": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "idUploadedBackground": {
+          "type": "boolean"
+        },
+        "size": {
+          "type": "string"
+        },
+        "brightness": {
+          "type": "string"
+        },
+        "isTemplate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "color",
+        "idUploadedBackground",
+        "size",
+        "brightness",
+        "isTemplate"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "address",
+    "badges",
+    "checkItemStates",
+    "closed",
+    "coordinates",
+    "creationMethod",
+    "dateLastActivity",
+    "desc",
+    "descData",
+    "due",
+    "dueReminder",
+    "idBoard",
+    "idChecklists",
+    "idLabels",
+    "idList",
+    "idMembers",
+    "idMembersVoted",
+    "idShort",
+    "labels",
+    "limits",
+    "locationName",
+    "manualCoverAttachment",
+    "name",
+    "pos",
+    "shortLink",
+    "shortUrl",
+    "subscribed",
+    "url",
+    "cover"
+  ]
+}
