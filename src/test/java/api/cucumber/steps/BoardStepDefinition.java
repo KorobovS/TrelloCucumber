@@ -1,11 +1,11 @@
 package api.cucumber.steps;
 
 import api.base.BaseTest;
-import api.base.TestData;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Step;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
@@ -13,10 +13,8 @@ import org.testng.Assert;
 import java.io.File;
 import java.util.List;
 
+import static api.base.TestData.*;
 import static api.base.TestData.BoardTestData.*;
-import static api.base.TestData.BoardTestData;
-import static api.base.TestData.ListsTestData;
-import static api.base.TestData.response;
 import static io.restassured.RestAssured.rootPath;
 
 public class BoardStepDefinition extends BaseTest {
@@ -114,34 +112,6 @@ public class BoardStepDefinition extends BaseTest {
         Assert.assertEquals(response.body().jsonPath().getString("id"), boardId);
     }
 
-    @Then("I got resource boards")
-    public void i_got_resource_boards() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-    }
-
-    @Then("I got the resources by lists")
-    public void i_got_the_resources_by_lists() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 3);
-    }
-
-    @Then("I got the resources by members")
-    public void i_got_the_resources_by_members() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 1);
-    }
-
-    @Then("I got the resources by cards")
-    public void i_got_the_resources_by_cards() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-        Assert.assertEquals(response.body().jsonPath().getList(rootPath).size(), 0);
-    }
-
-    @Then("I got the resources by labels")
-    public void i_got_the_resources_by_labels() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-    }
-
     @Then("The board is removed")
     public void the_board_is_removed() {
         Assert.assertEquals(getBoardService().getBoard(boardId).asString(), "The requested resource was not found.");
@@ -209,13 +179,14 @@ public class BoardStepDefinition extends BaseTest {
         Assert.assertEquals(response.getStatusCode(), code);
     }
 
-    @And("Check JSON schema board")
-    public void check_JSON_schema_board() {
-        File boardJson = new File("src/test/resources/jsonSchema/board.json");
+    @Step("Check JSON schema {object}")
+    @And("Check JSON schema {string}")
+    public void check_JSON_schema(String object) {
+        File json = new File(String.format("src/test/resources/jsonSchema/%s.json", object));
         MatcherAssert.assertThat(
                 "Validate json schema",
                 response.getBody().asString(),
-                JsonSchemaValidator.matchesJsonSchema(boardJson));
+                JsonSchemaValidator.matchesJsonSchema(json));
     }
 
     private void checkStatusCode() {

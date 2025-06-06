@@ -12,28 +12,28 @@ Feature: Get a board with resources
 
     Scenario: I get everything that is on the board
       When I get resources on a board
-      Then I got resource boards
+      Then I got the resources
       And The response status code should be 200
-      And Check JSON schema board
+      And Check JSON schema "board"
 
   Rule: Get a specific resource of the board
 
     Scenario: I get lists on a board
       When I get lists on a board
-      Then I got the resources by lists
+      Then I got the resources
       And The response status code should be 200
 
     Scenario: I get members on a board
       When I get members on a board
-      Then I got the resources by members
+      Then I got the resources
       And The response status code should be 200
 
     Scenario: I get cards on a board
       When I get cards on a board
-      Then I got the resources by cards
+      Then I got the resources
       And The response status code should be 200
 
     Scenario: I get labels on a board
       When I get labels on a board
-      Then I got the resources by labels
+      Then I got the resources
       And The response status code should be 200
