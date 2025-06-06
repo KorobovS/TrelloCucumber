@@ -12,7 +12,7 @@ Feature: Create a label
 
     Scenario Outline: I create a label with a custom name and color on the board
       When I create a label with a "<name>" and a "<color>" on the board
-      Then I got the resources by labels
+      Then I got the resources
       And The response status code should be <code>
       And I got a label with the specified "<name>" and "<color>"
 
@@ -26,7 +26,7 @@ Feature: Create a label
 
     Scenario: I get all label
       When I get labels on a board
-      Then I got the resources by labels
+      Then I got the resources
       And The response status code should be 200
 
     Scenario Outline: I get label with custom parameter

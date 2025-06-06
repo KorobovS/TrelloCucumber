@@ -10,7 +10,6 @@ import org.testng.Assert;
 import static api.base.TestData.BoardTestData.boardId;
 import static api.base.TestData.LabelsTestData.labelId;
 import static api.base.TestData.response;
-import static io.restassured.RestAssured.rootPath;
 
 public class LabelStepDefinition extends BaseTest {
 
@@ -26,7 +25,7 @@ public class LabelStepDefinition extends BaseTest {
     }
 
     @When("I update label name {string} and color {string}")
-    public void  i_update_label_name_name_and_color_color(String name, String color) {
+    public void i_update_label_name_name_and_color_color(String name, String color) {
         response = getLabelsService().updateLabel(labelId, name, color);
     }
 
