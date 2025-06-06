@@ -101,6 +101,7 @@ final public class TestData {
         public static String boardId;
         public static String baseListId;
         public static String listId;
+        public static String archiveListId;
         public static String toDoListId;
         public static String newCreatedListId;
         public static boolean subscribeValue = true;

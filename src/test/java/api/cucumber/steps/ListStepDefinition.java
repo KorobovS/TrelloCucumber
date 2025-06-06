@@ -9,8 +9,7 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
-import static api.base.TestData.ListsTestData.baseListId;
-import static api.base.TestData.ListsTestData.listId;
+import static api.base.TestData.ListsTestData.*;
 import static api.base.TestData.response;
 import static io.restassured.RestAssured.rootPath;
 
@@ -65,6 +64,19 @@ public class ListStepDefinition extends BaseTest {
         response = getListsService().getCardsOnAList(listId);
     }
 
+    @Step("I archive the list from the board")
+    @When("I archive the list from the board")
+    public void i_archive_the_list_from_the_board() {
+        response = getListsService().archiveAList(listId);
+        archiveListId = response.body().jsonPath().getString("id");
+    }
+
+    @Step("I unarchive the list from the board")
+    @When("I unarchive the list from the board")
+    public void i_unarchive_the_list_from_the_board() {
+        response = getListsService().unArchiveAList(archiveListId);
+    }
+
     @Step("Check response not null")
     @Then("I got the resources")
     public void i_got_the_resources() {
@@ -100,5 +112,11 @@ public class ListStepDefinition extends BaseTest {
             Allure.step(String.format("Fields value %s", str));
             Assert.assertTrue(response.body().jsonPath().getString(rootPath).contains(str));
         }
+    }
+
+    @Step("And Check archive status {expected}")
+    @And("Check archive status {string}")
+    public void check_archive_status(String expected) {
+        Assert.assertEquals(response.body().jsonPath().getString("closed"), expected);
     }
 }
