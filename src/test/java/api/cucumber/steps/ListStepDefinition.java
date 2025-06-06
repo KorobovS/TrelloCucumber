@@ -65,12 +65,6 @@ public class ListStepDefinition extends BaseTest {
         response = getListsService().getCardsOnAList(listId);
     }
 
-    @Step("Check I got the list not null")
-    @Then("I got the list")
-    public void i_got_the_list() {
-        Assert.assertNotNull(response.body().jsonPath().get(rootPath));
-    }
-
     @Step("Check response not null")
     @Then("I got the resources")
     public void i_got_the_resources() {

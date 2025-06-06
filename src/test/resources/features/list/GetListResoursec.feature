@@ -13,13 +13,13 @@ Feature: Get resoursec of the list
 
     Scenario: Get a list with default options
       When I get list
-      Then I got the list
+      Then I got the resources
       And The response status code should be 200
       And The list name field matches the "Name list"
 
     Scenario Outline: Get a list with field
       When I get list with "<fields>"
-      Then I got the list
+      Then I got the resources
       And The response status code should be <code>
       And The list name field matches the "Name list"
       And The list contains only these "<fields>"
