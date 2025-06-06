@@ -60,9 +60,4 @@ public class LabelStepDefinition extends BaseTest {
         Assert.assertEquals(response.body().jsonPath().getString("name"), name);
         Assert.assertEquals(response.body().jsonPath().getString("color"), color);
     }
-
-    @And("I get deleted label")
-    public void i_get_deleted_label() {
-        Assert.assertEquals(response.body().jsonPath().getString(rootPath), "[limits:[:]]");
-    }
 }

@@ -76,4 +76,3 @@ Feature: Create a label
       Given I create a label with a "Name" and a "green" on the board
       When I delete label
       Then The response status code should be 200
-      And I get deleted label

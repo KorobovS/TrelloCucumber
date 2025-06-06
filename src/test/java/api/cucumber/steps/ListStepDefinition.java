@@ -31,9 +31,9 @@ public class ListStepDefinition extends BaseTest {
         response = getListsService().createListWithPosition(name, position);
     }
 
-    @Step("Check I got the created list not null")
-    @Then("I got the created list")
-    public void i_got_the_created_list() {
+    @Step("Check I got the list not null")
+    @Then("I got the list")
+    public void i_got_the_list() {
         Assert.assertNotNull(response.body().jsonPath().get(rootPath));
     }
 

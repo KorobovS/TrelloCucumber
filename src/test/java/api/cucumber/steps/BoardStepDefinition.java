@@ -6,8 +6,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 
+import java.io.File;
 import java.util.List;
 
 import static api.base.TestData.BoardTestData.*;
@@ -204,6 +207,15 @@ public class BoardStepDefinition extends BaseTest {
     @And("The response status code should be {int}")
     public void the_response_status_code_should_be_code(int code) {
         Assert.assertEquals(response.getStatusCode(), code);
+    }
+
+    @And("Check JSON schema board")
+    public void check_JSON_schema_board() {
+        File boardJson = new File("src/test/resources/jsonSchema/board.json");
+        MatcherAssert.assertThat(
+                "Validate json schema",
+                response.getBody().asString(),
+                JsonSchemaValidator.matchesJsonSchema(boardJson));
     }
 
     private void checkStatusCode() {

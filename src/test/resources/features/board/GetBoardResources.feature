@@ -14,6 +14,7 @@ Feature: Get a board with resources
       When I get resources on a board
       Then I got resource boards
       And The response status code should be 200
+      And Check JSON schema board
 
   Rule: Get a specific resource of the board
 
