@@ -47,11 +47,12 @@ public class ListsApiTest extends BaseTest {
     @Story("lists")
     @Description("Update a name of the list")
     @Severity(SeverityLevel.CRITICAL)
-    public void tesUpdateANameForToDoList() {
-        Response response = getListsService().updateANameForList(toDoListId, NEW_NAME_FOR_THE_LIST);
+    public void testUpdateANameForToDoList() {
+        String option = "name";
+        Response response = getListsService().updateOptionForList(toDoListId, option, NEW_NAME_FOR_THE_LIST);
 
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertEquals(response.jsonPath().getString("name"), NEW_NAME_FOR_THE_LIST);
+        Assert.assertEquals(response.jsonPath().getString(option), NEW_NAME_FOR_THE_LIST);
     }
 
     @Test(priority = 2)

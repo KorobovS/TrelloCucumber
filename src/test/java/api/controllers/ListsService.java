@@ -34,9 +34,9 @@ public class ListsService extends BaseService {
         return response;
     }
 
-    @Step("Update a neme for the list with value = {newNameForTheList}")
-    public Response updateANameForList(String listId, String newNameForTheList) {
-        requestSpecification.queryParam("name", newNameForTheList);
+    @Step("Update a {option} for the list with value = {newNameForTheList}")
+    public Response updateOptionForList(String listId, String option, String newNameForTheList) {
+        requestSpecification.queryParam(option, newNameForTheList);
         Response response = apiClient.put(LISTS_BASE_PATH + listId, requestSpecification);
 
         initRequestSpecification();
