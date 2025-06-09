@@ -30,6 +30,7 @@ final public class TestData {
         public static String defiendPermissionBoardId;
         public static String labelId;
         public static String listId;
+        public static String secondBoardId;
     }
 
     public final static class ActionsTestData {

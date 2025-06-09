@@ -10,6 +10,8 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
+import static api.base.TestData.BoardTestData.boardName;
+import static api.base.TestData.BoardTestData.secondBoardId;
 import static api.base.TestData.ListsTestData.*;
 import static api.base.TestData.response;
 import static io.restassured.RestAssured.rootPath;
@@ -98,6 +100,18 @@ public class ListStepDefinition extends BaseTest {
         }
     }
 
+    @Step("I create second board with {option} access")
+    @When("I create second board with {string} access")
+    public void i_create_second_board_with_access(String option) {
+        secondBoardId = getBoardService().createCustomBoard(boardName, "prefs_permissionLevel", option).body().jsonPath().getString("id");
+    }
+
+    @Step("I move created list on the second board")
+    @And("I move created list on the second board")
+    public void i_move_created_list_on_the_second_board() {
+        getListsService().moveListFromOneBoardToAnother(listId, secondBoardId);
+    }
+
     @Step("Check response not null")
     @Then("I got the resources")
     public void i_got_the_resources() {
@@ -159,5 +173,18 @@ public class ListStepDefinition extends BaseTest {
             Assert.assertNotEquals(response.body().jsonPath().getString(optionArr[i]), oldOptionValue.get(optionArr[i]));
             Assert.assertEquals(response.body().jsonPath().getString(optionArr[i]), valueArr[i]);
         }
+    }
+
+    @Step("List moved on the second board")
+    @And("List moved on the second board")
+    public void list_moved_on_the_second_board() {
+        Assert.assertFalse(getBoardService().getListsOfABoard(boardId).body().jsonPath().getString(rootPath).contains(listId));
+        Assert.assertTrue(getBoardService().getListsOfABoard(secondBoardId).body().jsonPath().getString(rootPath).contains(listId));
+    }
+
+    @Step("Delete second board")
+    @And("Delete second board")
+    public void delete_second_board() {
+        getBoardService().deleteBoard(secondBoardId);
     }
 }
