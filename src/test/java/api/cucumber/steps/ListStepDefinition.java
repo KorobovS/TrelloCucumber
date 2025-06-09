@@ -80,6 +80,19 @@ public class ListStepDefinition extends BaseTest {
         response = getListsService().unArchiveAList(archiveListId);
     }
 
+    @Step("I update a {field} on a list with {value}")
+    @When("I update a {string} on a list with {string}")
+    public void i_update_a_field_on_a_list_with_value(String field, String value) {
+        response = getListsService().updateFieldOfAList(listId, field, value);
+    }
+
+    @Step("I update a list change the {option} to a new {value}")
+    @When("I update a list change the {string} to a new {string}")
+    public void i_update_a_list_change_the_option_to_a_new_value(String option, String value) {
+        oldOptionValue = getListsService().getAList(listId).body().jsonPath().getString(option);
+        response = getListsService().updateOptionForList(listId, option, value);
+    }
+
     @Step("Check response not null")
     @Then("I got the resources")
     public void i_got_the_resources() {
@@ -117,7 +130,7 @@ public class ListStepDefinition extends BaseTest {
         }
     }
 
-    @Step("And Check archive status {expected}")
+    @Step("Check archive status {expected}")
     @And("Check archive status {string}")
     public void check_archive_status(String expected) {
         Assert.assertEquals(getListsService().getAList(listId).body().jsonPath().getString("closed"), expected);
@@ -128,5 +141,12 @@ public class ListStepDefinition extends BaseTest {
     public void the_number_of_lists_on_the_board_has_changed() {
         int expected = numberOfListsOnTheBoard + 1;
         Assert.assertEquals(getBoardService().getListsOfABoard(boardId).body().jsonPath().getList(rootPath).size(), expected);
+    }
+
+    @Step("Check the {option} have new {value}")
+    @And("Check the {string} have new {string}")
+    public void check_the_option_have_new_value(String option, String value) {
+        Assert.assertNotEquals(response.body().jsonPath().getString(option), oldOptionValue);
+        Assert.assertEquals(response.body().jsonPath().getString(option), value);
     }
 }
