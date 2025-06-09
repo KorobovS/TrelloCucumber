@@ -15,6 +15,7 @@ Feature: Create a list on a board
       Then I got the resources
       And The response status code should be 200
       And The list name field matches the "Name list"
+      And The number of lists on the board has changed
 
     Scenario Outline: Create a list based on an existing one and set the position
       Given I create base list
@@ -23,6 +24,7 @@ Feature: Create a list on a board
       And The response status code should be <code>
       And The list name field matches the "<name>"
       And The list position matches the "<value>"
+      And The number of lists on the board has changed
 #      And The new list contains data from base list position "<value>"
 
       @positive

@@ -1,6 +1,7 @@
 package api.cucumber.steps;
 
 import api.base.BaseTest;
+import api.base.TestData;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,6 +25,7 @@ public class ListStepDefinition extends BaseTest {
     @Step("I create a list with default options and name - {name}")
     @When("I create a list with default options and {string}")
     public void i_create_a_list_with_default_options_and_name(String name) {
+        numberOfListsOnTheBoard = getBoardService().getListsOfABoard(TestData.BoardTestData.boardId).body().jsonPath().getList(rootPath).size();
         response = getListsService().createList(name);
         listId = response.body().jsonPath().getString("id");
     }
@@ -43,6 +45,7 @@ public class ListStepDefinition extends BaseTest {
     @Step("I create a list with name = {name} based on an existing one base list and set the position = {position}")
     @When("I create a list with {string} based on an existing one base list and set the position {string}")
     public void i_create_a_list_with_name_based_on_an_existing_one_base_list_and_set_the_position(String name, String position) {
+        numberOfListsOnTheBoard = getBoardService().getListsOfABoard(TestData.BoardTestData.boardId).body().jsonPath().getList(rootPath).size();
         response = getListsService().createListWithPosition(name, position);
     }
 
@@ -117,6 +120,13 @@ public class ListStepDefinition extends BaseTest {
     @Step("And Check archive status {expected}")
     @And("Check archive status {string}")
     public void check_archive_status(String expected) {
-        Assert.assertEquals(response.body().jsonPath().getString("closed"), expected);
+        Assert.assertEquals(getListsService().getAList(listId).body().jsonPath().getString("closed"), expected);
+    }
+
+    @Step("The number of lists on the board has changed")
+    @And("The number of lists on the board has changed")
+    public void the_number_of_lists_on_the_board_has_changed() {
+        int expected = numberOfListsOnTheBoard + 1;
+        Assert.assertEquals(getBoardService().getListsOfABoard(boardId).body().jsonPath().getList(rootPath).size(), expected);
     }
 }

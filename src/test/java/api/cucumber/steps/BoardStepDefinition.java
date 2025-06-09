@@ -15,6 +15,7 @@ import java.util.List;
 
 import static api.base.TestData.*;
 import static api.base.TestData.BoardTestData.*;
+import static api.base.TestData.ListsTestData.numberOfListsOnTheBoard;
 import static io.restassured.RestAssured.rootPath;
 
 public class BoardStepDefinition extends BaseTest {

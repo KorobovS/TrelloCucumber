@@ -105,6 +105,7 @@ final public class TestData {
         public static String toDoListId;
         public static String newCreatedListId;
         public static boolean subscribeValue = true;
+        public static int numberOfListsOnTheBoard;
     }
 
     public final static class MembersTestData {
