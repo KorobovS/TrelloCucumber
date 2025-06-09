@@ -122,10 +122,10 @@ public class ListsService extends BaseService {
         return response;
     }
 
-    @Step("Update the subscribed field of a list wit id = {idOfAList} ")
-    public Response updateSubscribedFieldOfAList(String idOfAList, boolean valueForSubscribedField) {
+    @Step("Update the field {field} on {value} of a list wit id = {idOfAList} ")
+    public Response updateFieldOfAList(String idOfAList, String field, boolean valueForSubscribedField) {
         requestSpecification.queryParam("value", valueForSubscribedField);
-        Response response = apiClient.put(LISTS_BASE_PATH + idOfAList + subscribedFieldEndPoint, requestSpecification);
+        Response response = apiClient.put(LISTS_BASE_PATH + idOfAList + "/" + field, requestSpecification);
 
         initRequestSpecification();
 

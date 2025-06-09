@@ -149,7 +149,8 @@ public class ListsApiTest extends BaseTest {
     @Description("Update subscribed field of a list")
     @Severity(SeverityLevel.CRITICAL)
     public void testUpdateASubscribedFieldOfAList() {
-        Response response = getListsService().updateSubscribedFieldOfAList(newCreatedListId, subscribeValue);
+        String field = "subscribed";
+        Response response = getListsService().updateFieldOfAList(newCreatedListId, field, fieldValue);
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }
