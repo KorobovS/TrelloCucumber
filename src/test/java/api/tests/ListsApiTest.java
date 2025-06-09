@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static api.base.TestData.ListsTestData.*;
-import static api.base.TestData.ListsTestData.NAME_OF_THE_LIST;
 
 @Epic("API Tests")
 @Feature("Lists Validation")
@@ -31,7 +30,7 @@ public class ListsApiTest extends BaseTest {
         getListsService().deleteBoard(boardId);
     }
 
-    @Test(priority = 0)
+    @Test()
     @Story("lists")
     @Description("Create a new List on a Board")
     @Severity(SeverityLevel.CRITICAL)
@@ -125,7 +124,7 @@ public class ListsApiTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void testGetCardsInAList() {
         Response response = getListsService().getCardsOnAList(toDoListId);
-        List arrayList = response.jsonPath().getList("id");
+        List<String> arrayList = response.jsonPath().getList("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(arrayList.size(), 2);
@@ -161,7 +160,7 @@ public class ListsApiTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void testGetActionsOfAList() {
         Response response = getListsService().getActionsofAList(newCreatedListId);
-        List arrayList = response.jsonPath().getList("id");
+        List<String> arrayList = response.jsonPath().getList("id");
 
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(arrayList.size(), 3);
