@@ -18,12 +18,13 @@ Feature: Update a List
 
       @positive
       Examples:
-        | option     | value    | code |
-        | name       | New name | 200  |
-        | closed     | true     | 200  |
+        | option                        | value                     | code |
+        | name                          | New name                  | 200  |
+        | closed                        | true                      | 200  |
 #        | idBoard    |      | 200  |
-        | pos        | 100      | 200  |
-        | subscribed | true     | 200  |
+        | pos                           | 100                       | 200  |
+        | subscribed                    | true                      | 200  |
+        | name, closed, pos, subscribed | New name, true, 100, true | 200  |
 
   Rule: Update a field on a List
 

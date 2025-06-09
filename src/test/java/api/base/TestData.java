@@ -3,6 +3,9 @@ package api.base;
 import io.restassured.response.Response;
 import org.testng.annotations.DataProvider;
 
+import java.util.HashMap;
+import java.util.Map;
+
 final public class TestData {
 
     private static final String BASE_BOARD_NAME = "Board for ";
@@ -106,7 +109,7 @@ final public class TestData {
         public static String newCreatedListId;
         public static String fieldValue = "true";
         public static int numberOfListsOnTheBoard;
-        public static String oldOptionValue;
+        public static Map<String, String> oldOptionValue = new HashMap<>();
     }
 
     public final static class MembersTestData {
