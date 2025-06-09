@@ -123,7 +123,7 @@ public class ListsService extends BaseService {
     }
 
     @Step("Update the field {field} on {value} of a list wit id = {idOfAList} ")
-    public Response updateFieldOfAList(String idOfAList, String field, boolean valueForSubscribedField) {
+    public Response updateFieldOfAList(String idOfAList, String field, String valueForSubscribedField) {
         requestSpecification.queryParam("value", valueForSubscribedField);
         Response response = apiClient.put(LISTS_BASE_PATH + idOfAList + "/" + field, requestSpecification);
 

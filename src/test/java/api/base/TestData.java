@@ -104,8 +104,9 @@ final public class TestData {
         public static String archiveListId;
         public static String toDoListId;
         public static String newCreatedListId;
-        public static boolean subscribeValue = true;
+        public static String fieldValue = "true";
         public static int numberOfListsOnTheBoard;
+        public static String oldOptionValue;
     }
 
     public final static class MembersTestData {
