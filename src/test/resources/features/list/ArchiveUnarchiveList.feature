@@ -1,8 +1,8 @@
 Feature: Archive or unarchive a list
 
   I, as an authorized user
-  I want to be able to archive or unarchive any sheet on the board
-  In order to be able to remove temporarily unnecessary sheet/sheets without deleting them and, if necessary, return them to the project
+  I want to be able to archive or unarchive any list on the board
+  In order to be able to remove temporarily unnecessary list/lists without deleting them and, if necessary, return them to the project
 
   Background:
     Given I am registered user in the Trello app
